@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Karthikeyan P - Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #0a1628 0%, #1e1b4b 50%, #2e1065 100%);
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            padding: 1rem 0;
+        }
+
+        nav.scrolled {
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(6, 182, 212, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            background: linear-gradient(to right, #60a5fa, #22d3ee, #14b8a6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            transition: color 0.3s;
+            text-transform: capitalize;
+            cursor: pointer;
+        }
+
+        .nav-links a:hover {
+            color: #22d3ee;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 6rem 2rem 2rem;
+        }
+
+        .hero-content {
+            max-width: 900px;
+        }
+
+        .profile-icon {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 2rem;
+            background: linear-gradient(135deg, #3b82f6, #22d3ee, #14b8a6);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            font-weight: bold;
+            box-shadow: 0 0 40px rgba(34, 211, 238, 0.3);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, #60a5fa, #22d3ee, #14b8a6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            color: #d1d5db;
+            margin-bottom: 1rem;
+        }
+
+        .hero .subtitle {
+            font-size: 1.1rem;
+            color: #9ca3af;
+            margin-bottom: 2rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .social-links a {
+            color: #ffffff;
+            font-size: 2rem;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            color: #22d3ee;
+            transform: scale(1.1);
+        }
+
+        .cta-button {
+            background: linear-gradient(to right, #2563eb, #06b6d4);
+            color: white;
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .cta-button:hover {
+            box-shadow: 0 0 30px rgba(34, 211, 238, 0.5);
+            transform: scale(1.05);
+        }
+
+        /* Section Styles */
+        section {
+            min-height: 100vh;
+            padding: 6rem 2rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            background: linear-gradient(to right, #60a5fa, #22d3ee);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .grid {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .grid-2 {
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        }
+
+        .card {
+            background: rgba(30, 41, 59, 0.4);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 1rem;
+            border: 1px solid rgba(34, 211, 238, 0.2);
+            transition: all 0.3s;
+        }
+
+        .card:hover {
+            border-color: rgba(34, 211, 238, 0.4);
+            box-shadow: 0 10px 40px rgba(34, 211, 238, 0.2);
+        }
+
+        .card-icon {
+            width: 50px;
+            height: 50px;
+            margin-bottom: 1rem;
+        }
+
+        .card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: #22d3ee;
+        }
+
+        .card h4 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .card p {
+            color: #d1d5db;
+            line-height: 1.6;
+            margin-bottom: 0.5rem;
+        }
+
+        .skills-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .skill-tag {
+            background: rgba(59, 130, 246, 0.3);
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .cert-card {
+            background: rgba(15, 23, 42, 0.5);
+            padding: 1.5rem;
+            border-radius: 0.8rem;
+            border: 1px solid rgba(34, 211, 238, 0.1);
+            transition: all 0.3s;
+        }
+
+        .cert-card:hover {
+            border-color: rgba(34, 211, 238, 0.3);
+        }
+
+        .cert-card h4 {
+            color: #22d3ee;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-card {
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.2), rgba(15, 23, 42, 0.4));
+            padding: 2rem;
+            border-radius: 1rem;
+            border: 1px solid rgba(34, 211, 238, 0.3);
+            transition: all 0.3s;
+        }
+
+        .project-card:hover {
+            border-color: rgba(34, 211, 238, 0.6);
+            box-shadow: 0 10px 40px rgba(34, 211, 238, 0.2);
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .tag {
+            background: rgba(34, 211, 238, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+        }
+
+        .achievement-card {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(15, 23, 42, 0.4));
+            padding: 1.5rem;
+            border-radius: 1rem;
+            border: 1px solid rgba(34, 211, 238, 0.2);
+            display: flex;
+            gap: 1rem;
+            transition: all 0.3s;
+        }
+
+        .achievement-card:hover {
+            border-color: rgba(34, 211, 238, 0.4);
+        }
+
+        .achievement-icon {
+            width: 40px;
+            height: 40px;
+            flex-shrink: 0;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .contact-card {
+            background: rgba(30, 41, 59, 0.4);
+            padding: 2rem;
+            border-radius: 1rem;
+            border: 1px solid rgba(34, 211, 238, 0.2);
+            text-align: center;
+            transition: all 0.3s;
+            text-decoration: none;
+            color: white;
+        }
+
+        .contact-card:hover {
+            border-color: rgba(34, 211, 238, 0.6);
+            box-shadow: 0 10px 40px rgba(34, 211, 238, 0.2);
+            transform: scale(1.05);
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            margin: 0 auto 1rem;
+        }
+
+        .interest-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .interest-tag {
+            background: linear-gradient(to right, rgba(37, 99, 235, 0.2), rgba(34, 211, 238, 0.2));
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            border: 1px solid rgba(34, 211, 238, 0.3);
+            font-size: 1.1rem;
+        }
+
+        footer {
+            background: rgba(15, 23, 42, 0.5);
+            padding: 2rem;
+            text-align: center;
+            border-top: 1px solid rgba(34, 211, 238, 0.2);
+        }
+
+        footer p {
+            color: #9ca3af;
+            margin: 0.5rem 0;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: rgba(15, 23, 42, 0.98);
+                padding: 2rem;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .profile-icon {
+                width: 120px;
+                height: 120px;
+                font-size: 2rem;
+            }
+        }
+
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <div class="logo">Karthikeyan P</div>
+            <ul class="nav-links" id="navLinks">
+                <li><a onclick="scrollToSection('home')">Home</a></li>
+                <li><a onclick="scrollToSection('about')">About</a></li>
+                <li><a onclick="scrollToSection('experience')">Experience</a></li>
+                <li><a onclick="scrollToSection('projects')">Projects</a></li>
+                <li><a onclick="scrollToSection('achievements')">Achievements</a></li>
+                <li><a onclick="scrollToSection('contact')">Contact</a></li>
+            </ul>
+            <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div class="profile-icon">KP</div>
+            <h1>Computer Science Engineer</h1>
+            <p>Enthusiastic developer with a strong technical background and passion for technology</p>
+            <p class="subtitle">Quick learner • Team Player • Solution-Oriented</p>
+            <div class="social-links">
+                <a href="mailto:karthikeyan@example.com">📧</a>
+                <a href="https://github.com/karthikeyan" target="_blank">🔗</a>
+                <a href="https://linkedin.com/in/karthikeyan" target="_blank">💼</a>
+            </div>
+            <button class="cta-button" onclick="scrollToSection('contact')">Let's Connect</button>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="grid grid-2">
+                <div class="card">
+                    <div class="card-icon">🎓</div>
+                    <h3>Education</h3>
+                    <div style="margin-bottom: 1.5rem;">
+                        <h4 style="color: #22d3ee;">B.E. Computer Science Engineering</h4>
+                        <p>C.K. College of Engineering and Technology</p>
+                        <p style="color: #9ca3af;">Anna University • 2022 – 2026</p>
+                        <p style="color: #60a5fa; font-weight: 600;">CGPA: 8.62 (6th Semester)</p>
+                    </div>
+                    <div style="margin-bottom: 1.5rem;">
+                        <h4 style="color: #14b8a6;">Higher Secondary (HSC) - 80.83%</h4>
+                        <p style="color: #9ca3af;">St. Joseph's Hr. Sec School, Cuddalore • 2022</p>
+                    </div>
+                    <div>
+                        <h4 style="color: #60a5fa;">SSLC - 83.2%</h4>
+                        <p style="color: #9ca3af;">St. Joseph's Hr. Sec School, Cuddalore • 2020</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">💻</div>
+                    <h3>Technical Skills</h3>
+                    <div style="margin-bottom: 1rem;">
+                        <p style="color: #22d3ee; font-weight: 600; margin-bottom: 0.5rem;">Programming Languages</p>
+                        <div class="skills-grid">
+                            <span class="skill-tag">Java</span>
+                            <span class="skill-tag">C</span>
+                            <span class="skill-tag">SQL</span>
+                        </div>
+                    </div>
+                    <div style="margin-bottom: 1rem;">
+                        <p style="color: #22d3ee; font-weight: 600; margin-bottom: 0.5rem;">Web Technologies</p>
+                        <div class="skills-grid">
+                            <span class="skill-tag">HTML</span>
+                            <span class="skill-tag">CSS</span>
+                            <span class="skill-tag">JavaScript</span>
+                            <span class="skill-tag">React</span>
+                        </div>
+                    </div>
+                    <div style="margin-bottom: 1rem;">
+                        <p style="color: #22d3ee; font-weight: 600; margin-bottom: 0.5rem;">Tools</p>
+                        <div class="skills-grid">
+                            <span class="skill-tag">VS Code</span>
+                            <span class="skill-tag">GitHub</span>
+                            <span class="skill-tag">Eclipse</span>
+                        </div>
+                    </div>
+                    <div>
+                        <p style="color: #22d3ee; font-weight: 600; margin-bottom: 0.5rem;">Soft Skills</p>
+                        <p>Communication • Time Management • Adaptability • Teamwork</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" style="background: rgba(15, 23, 42, 0.3);">
+        <div class="container">
+            <h2 class="section-title">Experience</h2>
+            
+            <div style="margin-bottom: 3rem;">
+                <div class="card" style="background: linear-gradient(to right, rgba(37, 99, 235, 0.2), rgba(6, 182, 212, 0.2)); border-color: rgba(34, 211, 238, 0.3);">
+                    <div style="display: flex; gap: 1rem;">
+                        <div style="font-size: 2rem;">💼</div>
+                        <div>
+                            <h3>Web Development Intern</h3>
+                            <p style="font-size: 1.2rem; margin-bottom: 0.5rem;">ORMATRIX</p>
+                            <p style="color: #9ca3af; margin-bottom: 1rem;">August 2025 – Present</p>
+                            <p>Contributing to the development and maintenance of web applications using PHP. Collaborating with the team on backend logic, debugging, and optimizing performance. Gaining hands-on experience with databases, server-side processes, and best practices in web development while working in a fast-paced, collaborative environment.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3 style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
+                    <span style="font-size: 2rem;">🏆</span>
+                    Certifications
+                </h3>
+                <div class="cert-grid">
+                    <div class="cert-card">
+                        <h4>Infosys Springboard</h4>
+                        <p>Foundation of Java Programming</p>
+                    </div>
+                    <div class="cert-card">
+                        <h4 style="color: #60a5fa;">NPTEL (Elite)</h4>
+                        <p>Joy of Computing using Python</p>
+                    </div>
+                    <div class="cert-card">
+                        <h4 style="color: #14b8a6;">HackerRank</h4>
+                        <p>Java Programming Certificate</p>
+                    </div>
+                    <div class="cert-card">
+                        <h4>Udemy</h4>
+                        <p>Foundation of RDBMS</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <div class="container">
+            <h2 class="section-title">Featured Projects</h2>
+            
+            <div class="grid grid-2">
+                <div class="project-card">
+                    <div style="font-size: 2.5rem; margin-bottom: 1rem;">🗄️</div>
+                    <h3>Outcome Based Education (CO-PO Mapping)</h3>
+                    <p>Developed a web-based CO-PO Mapping System that streamlines the mapping, analysis, and attainment calculations, helping educators measure how individual course objectives contribute to overall program goals in Outcome-Based Education.</p>
+                    <div class="tags">
+                        <span class="tag">Web Development</span>
+                        <span class="tag">Database Design</span>
+                        <span class="tag">OBE</span>
+                    </div>
+                </div>
+
+                <div class="project-card" style="background: linear-gradient(135deg, rgba(6, 182, 212, 0.2), rgba(15, 23, 42, 0.4));">
+                    <div style="font-size: 2.5rem; margin-bottom: 1rem;">🤖</div>
+                    <h3>AI Powered Chatbot with Image Recognition</h3>
+                    <p>Developed a chatbot that processes user queries and analyzes uploaded images using AWS Rekognition for object detection, face recognition, and text extraction. Provides real-time, intelligent responses based on classification results.</p>
+                    <div class="tags">
+                        <span class="tag">AI/ML</span>
+                        <span class="tag">AWS Rekognition</span>
+                        <span class="tag">NLP</span>
+                        <span class="tag">Computer Vision</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" style="margin-top: 3rem;">
+                <h3 style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
+                    <span style="font-size: 2rem;">💡</span>
+                    Areas of Interest
+                </h3>
+                <div class="interest-tags">
+                    <span class="interest-tag">Web Development</span>
+                    <span class="interest-tag">RDBMS</span>
+                    <span class="interest-tag">Object Oriented Programming</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Achievements Section -->
+    <section id="achievements" style="background: rgba(15, 23, 42, 0.3);">
+        <div class="container">
+            <h2 class="section-title">Achievements & Activities</h2>
+            
+            <div class="grid grid-2">
+                <div class="achievement-card" style="border-color: rgba(234, 179, 8, 0.3);">
+                    <div class="achievement-icon" style="font-size: 2rem;">🏆</div>
+                    <div>
+                        <h4 style="color: #fbbf24; margin-bottom: 0.5rem;">1st Prize - Project Expo</h4>
+                        <p>Won First Prize at CK College of Engineering and Technology for building an Outcome Based Education System that helps map and track COs and POs for academics.</p>
+                    </div>
+                </div>
+
+                <div class="achievement-card">
+                    <div class="achievement-icon" style="font-size: 2rem;">🧠</div>
+                    <div>
+                        <h4 style="color: #60a5fa; margin-bottom: 0.5rem;">ML Hackathon Participant</h4>
+                        <p>Participated in machine learning based Hackathon at CK College, gaining hands-on experience in solving real-world problems using ML techniques.</p>
+                    </div>
+                </div>
+
+                <div class="achievement-card">
+                    <div class="achievement-icon" style="font-size: 2rem;">💻</div>
+                    <div>
+                        <h4 style="color: #22d3ee; margin-bottom: 0.5rem;">Smart India Hackathon</h4>
+                        <p>Participated in the Internal Level Smart India Hackathon, built an Image Recognition Chatbot demonstrating AI and computer vision capabilities.</p>
+                    </div>
+                </div>
+
+                <div class="achievement-card">
+                    <div class="achievement-icon" style="font-size: 2rem;">🧬</div>
+                    <div>
+                        <h4 style="color: #a78bfa; margin-bottom: 0.5rem;">Neuromorphic AI Paper</h4>
+                        <p>Presented technical paper on Neuromorphic AI to the Ministry of MSME, highlighting research interest in brain-inspired AI architectures.</p>
+                    </div>
+                </div>
+
+                <div class="achievement-card">
+                    <div class="achievement-icon" style="font-size: 2rem;">🛡️</div>
+                    <div>
+                        <h4 style="color: #14b8a6; margin-bottom: 0.5rem;">Blockchain Security Paper</h4>
+                        <p>Presented technical paper on AI-driven Blockchain Security to Ministry of MSME, demonstrating research in integrating AI with Blockchain for enhanced cybersecurity.</p>
+                    </div>
+                </div>
+
+                <div class="achievement-card">
+                    <div class="achievement-icon" style="font-size: 2rem;">📋</div>
+                    <div>
+                        <h4 style="color: #818cf8; margin-bottom: 0.5rem;">Tri Force Hackathon Coordinator</h4>
+                        <p>Coordinated and managed logistics for the Tri Force Hackathon at college, ensuring smooth event execution and participant engagement.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <h2 class="section-title">Let's Connect</h2>
+            <p style="text-align: center; font-size: 1.2rem; color: #d1d5db; margin-bottom: 3rem;">
+                I'm always excited to discuss new projects, innovative ideas, and opportunities to contribute to impactful solutions.
+            </p>
+            
+            <div class="contact-grid">
+                <a href="mailto:karthikeyan@example.com" class="contact-card">
+                    <div class="contact-icon" style="font-size: 2.5rem;">📧</div>
+                    <h3 style="font-size: 1.2rem; margin-bottom: 0.5rem;">Email</h3>
+                    <p style="font-size: 0.9rem; color: #9ca3af;">Drop me a message</p>
+                </a>
+                
+                <a href="https://github.com/karthikeyan" target="_blank" class="contact-card">
+                    <div class="contact-icon" style="font-size: 2.5rem;">🔗</div>
+                    <h3 style="font-size: 1.2rem; margin-bottom: 0.5rem;">GitHub</h3>
+                    <p style="font-size: 0.9rem; color: #9ca3af;">Check out my code</p>
+                </a>
+                
+                <a href="https://linkedin.com/in/karthikeyan" target="_blank" class="contact-card">
+                    <div class="contact-icon" style="font-size: 2.5rem;">💼</div>
+                    <h3 style="font-size: 1.2rem; margin-bottom: 0.5rem;">LinkedIn</h3>
+                    <p style="font-size: 0.9rem; color: #9ca3af;">Let's network</p>
+                </a>
+            </div>
+
+            <div class="card" style="background: linear-gradient(to right, rgba(37, 99, 235, 0.2), rgba(6, 182, 212, 0.2)); border-color: rgba(34, 211, 238, 0.3);">
+                <h3 style="text-align: center; margin-bottom: 1rem;">Career Objective</h3>
+                <p style="text-align: center;">
+                    Enthusiastic Computer Science Engineering student with a strong technical background and a passion for technology. A quick learner and team player, committed to delivering high-quality solutions and enhancing user experiences.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2025 Karthikeyan P. All rights reserved.</p>
+        <p style="font-size: 0.9rem;">Built with HTML, CSS & JavaScript</p>
+    </footer>
+
+    <script>
+        // Scroll to section function
+        function scrollToSection(id) {
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+            // Close mobile menu if open
+            document.getElementById('navLinks').classList.remove('active');
+        }
+
+        // Toggle mobile menu
+        function toggleMenu() {
+            document.getElementById('navLinks').classList.toggle('active');
+        }
+
+        // Add scrolled class to navbar
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const navLinks = document.getElementById('navLinks');
+            const menuBtn = document.querySelector('.mobile-menu-btn');
+            
+            if (!navLinks.contains(event.target) && !menuBtn.contains(event.target)) {
+                navLinks.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>
